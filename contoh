@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+  <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css'>
+  <title>Absensi | Kafetaria UNAI</title>
+  <link rel="shortcut icon" href="https://th.bing.com/th/id/OIP.87xosWnNr3bytWd_JXgGJwHaEK?w=318&h=180&c=7&r=0&o=5&pid=1.7" />
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row flex-nowrap">
+      <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
+        <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+          <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+            <span class="fs-5 d-none d-sm-inline">Kafetaria UNAI</span>
+          </a>
+          <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+            <li class="nav-item">
+              <a href="absensi.html" class="nav-link align-middle px-0">
+                <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Absensi</span>
+              </a>
+            </li>
+            <li>
+              <a href="admin.html" class="nav-link px-0 align-middle">
+                <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline">Admin</span> </a>
+            </li>
+            <li>
+              <a href="index.html" class="nav-link px-0 align-middle">
+                <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Student Labor</span></a>
+            </li>
+            <li>
+              <a href="grade.html" class="nav-link px-0 align-middle">
+                <i class="fs-4 bi-currency-dollar"></i> <span class="ms-1 d-none d-sm-inline">Grade</span></a>
+            </li>
+
+          </ul>
+          <hr>
+          <div class="dropdown pb-4 fixed-bottom">
+            <a href="#" class="d-flex align-items-center text-white text-decoration-none " data-bs-toggle="modal"
+              data-bs-target="#createUserModalCenter" id="dropdownUser1" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              <i class="fs-4 bi-cloud-check "></i>
+              <span class="d-none d-sm-inline mx-1">Tambahkan Data</span>
+
+            </a>
+            <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+              id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+              <img src="data:image/jpeg;base64,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" alt="hugenerd" width="30" height="30" class="rounded-circle">
+              <span class="d-none d-sm-inline mx-1">Seprianto M</span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+              <div class="col-md-12">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createUserModalCenter">
+                  Add Data
+                </button>
+              </div>
+              <li><a class="dropdown-item" href="admin.html">To Admin</a></li>
+              <li><a class="dropdown-item" href="#">Profile</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item" href="index.html">Sign out</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div id="app">
+
+        <div class="container mt-3">
+          
+          
+        </div> 
+        <!-- The Modal -->
+        <div class="modal fade" id="createUserModalCenter" tabindex="-1" role="dialog" aria-labelledby="createUserModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+              <div class="modal-header">
+              <h5 class="modal-title" id="createUserModalLongTitle">Isi Data</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+             
+              </button>
+              </div>
+        
+              <!-- Modal body -->
+              <div class="modal-body">
+                <form>
+                  <div class="row">
+                    <div class="col-md-6 mb-3">
+                      <label for="nama">Nama</label>
+                      <input v-model="nama" type="text" class="form-control" id="nama" placeholder="" value="" required>
+                    </div>
+                  </div>
+                  <div class="mb-3">
+                    <label for="nim">Nim</label>
+                    <div class="input-group">
+                      <input v-model="nim" type="text" class="form-control" id="nim" placeholder="nim"
+                        required>
+                    </div>
+                  </div>
+                  <div class="mb-3">
+                    <label for="tanggal">Tanggal</label>
+                    <div class="input-group">
+                      <input v-model="tanggal" type="text" class="form-control" id="tanggal" placeholder="tanggal"
+                        required>
+                    </div>
+                  </div>
+                </form>
+              </div>
+        
+              <!-- Modal footer -->
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" v-on:click="createUser" >submit</button>
+              </div>
+        
+            </div>
+          </div>
+        </div>
+  
+        <!-- Modal update -->
+        <div class="modal fade" id="updateUserModalCenter" tabindex="-1" aria-labelledby="updateUserModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="updateUserModalCenterTitle">Isi Data</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+                <div class="modal-body">
+                  <form>
+                    <div class="mb-3">
+                      <label for="Status">STATUS</label>
+                      <input type="radio" value="HADIR" v-model="status">
+                      <label>HADIR</label>
+                      <input type="radio" value="TIDAK HADIR" v-model="status">
+                      <label>TIDAK HADIR</label>
+  
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input"></span>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+       
+    
+                <div class="modal-footer">
+      
+                  <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-dark" data-bs-dismiss="modal" v-on:click="updateUser(user)">update </button>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+    <!-- Modal -->
+          <div class="modal fade" id="deleteUserModalCenter" tabindex="-1" aria-labelledby="deleteUserModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="deleteUserModalCenterTitle">Confirm data deletion</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+              <div class="modal-body">
+                 Are you sure want to delete this entry?
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">no</button>
+                <button type="submit" class="btn btn-dark" data-bs-dismiss="modal" v-on:click="deleteUser">yes</button>
+              </div> 
+            </div>
+          </div>
+        </div>
+   
+        <div class="">
+          <div class="col-md-12">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createUserModalCenter">
+              Add Data
+            </button>
+          </div>
+          <table class="table table-striped">
+            <br>
+  
+            <tr>
+              <th>ID</th>
+              <th>Nama</th>
+              <th>Nim</th>
+              <th>Tanggal</th>
+              <th>Status</th>
+              <th>Edit</th>
+              <th>Delete</th>
+            </tr>
+              <tr v-for="user in users">
+              <td>{{ user.id }}</td>
+              <td>{{ user.nama }}</td>
+              <td>{{ user.nim }}</td>
+              <td>{{ user.tanggal }}</td>
+              <td>{{ user.status }}</td>
+  
+              <td><button class="btn btn-md btn-dark " data-bs-toggle="modal" data-bs-target="#updateUserModalCenter" v-on:click="getEdit(user)">Edit</button></td>
+              <td><button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteUserModalCenter" v-on:click="getDelete(user)">Delete</button></td>
+           
+      
+          </table>
+  
+     
+        </div>
+      </div>
+    
+  
+      <!-- Axios -->
+      <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  
+      <script>
+        var app = new Vue({
+          el: '#app',
+          data: {
+            errors: [],
+            message: null,
+            users: [],
+            userIdEdit: null,
+            userIdDelete: null,
+            editMode: false,
+            deleteMode: false,
+            nama: '',
+            nim: '',
+            tanggal: '',
+            status: '',
+            
+            
+          },
+          mounted: function () {
+            this.getUser();
+          },
+          methods: {
+            getUser() {
+              axios.get('https://621a28b181d4074e85bae85e.mockapi.io/Absensi/Absensi')
+                .then(response => {
+                  this.users = response.data;
+                  console.log(response);
+                })
+                .catch(error => {
+                  console.log(error);
+                });
+            },
+            createUser: function () {
+              var createUserModalCenter = document.getElementById('createUserModalCenter')
+  
+              axios.post('https://621a28b181d4074e85bae85e.mockapi.io/Absensi/Absensi', {
+                  nama: this.nama,
+                  nim: this.nim,
+                  tanggal: this.tanggal,
+                  status: this.status,
+                })
+                .then(response => {
+                  this.getUser();
+                  swal('created', 'Berhasil Menambah Data', 'success')
+                  this.resetForm();
+                  console.log(response);
+                })
+                .catch(error => {
+                  console.log(error);
+                });
+            },
+            resetForm: function () {
+              this.editMode = false;
+              this.deleteMode = false;
+              this.userIdEdit = null;
+              this.nama = null;
+              this.nim = null;
+              this.tanggal = null;
+              this.status = null;
+            },
+            getEdit: function (user) {
+              var updateUserModalCenter = document.getElementById('updateUserModalCenter');
+              this.message = null;
+              this.editMode = true;
+              this.deleteMode = false;
+              this.userIdEdit = user.id;
+              this.nama = user.nama;
+              this.nim = user.nim;
+              this.tanggal = user.tanggal;
+              this.status = user.status;
+            },
+            getDelete: function (user) {
+              var deleteUserModalCenter = document.getElementById('deleteUserModalCenter');
+              this.message = null;
+              this.deleteMode = true;
+              this.editMode = false;
+              this.userIdDelete = user.id;
+              this.namaUpdate= user.nama;
+              this.nimUpdate= user.nim;
+              this.tanggalUpdate = user.tanggal;
+              this.statusUpdate = user.status;
+            },
+            updateUser: function () {
+              axios.put(
+                  `https://621a28b181d4074e85bae85e.mockapi.io/Absensi/Absensi/${this.userIdEdit}`, {
+                    nama: this.nama,
+                    nim: this.nim,
+                    tanggal: this.tanggal,
+                    status: this.status,
+                  })
+                .then(res => {
+                  swal('created', 'Berhasil Update Data', 'success')
+                  var updateUserModalCenter = document.getElementById('updateUserModalCenter');
+                  this.resetForm();
+                  this.getUser();
+                })
+                .catch(err => {
+                  console.log(err);
+                })
+            },
+            deleteUser: function () {
+              axios.delete(
+                  `https://621a28b181d4074e85bae85e.mockapi.io/Absensi/Absensi/${this.userIdDelete}`)
+                .then(res => {
+                  swal('created', 'Berhasil Menghapus Data', 'success')
+                  var deleteUserModalCenter = document.getElementById('deleteUserModalCenter');
+                  this.resetForm();
+                  this.getUser();
+                })
+                .catch(err => {
+                  console.log(err);
+                })
+            }
+          }
+        })
+      </script>
+
+
+    </div>
+
+</div>
+</body>
+
+</html>
